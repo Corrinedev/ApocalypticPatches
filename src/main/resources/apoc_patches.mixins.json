@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "mod.cdv.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "mixins": [
+    "ArmorOptimizerMixin",
+    "ItemMixin",
+    "SwordItemMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

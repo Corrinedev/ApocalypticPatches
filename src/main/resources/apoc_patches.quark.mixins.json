@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "mod.cdv.mixin.quark",
+  "plugin": "mod.cdv.compat.quark.QuarkMixinPlugin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "apocalypsenow.refmap.json",
+  "mixins": [
+    "InventoryTransferHandlerMixin"
+  ],
+  "client": [
+    "client.IButtonProviderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
