@@ -1,10 +1,12 @@
 package mod.cdv.mixin.quark;
 
+import net.mcreator.apocalypsenow.block.MetalShelvesBlock;
 import net.mcreator.apocalypsenow.init.ApocalypsenowModMenus;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingMenu;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.registries.RegistryObject;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +20,9 @@ import org.violetmoon.quark.base.handler.InventoryTransferHandler;
 
 import java.util.HashSet;
 
+import static mod.cdv.util.CacheKeyHolder.APOCALYPSE_NOW_TYPES;
+import static mod.cdv.util.CacheKeyHolder.isApocalypseContainer;
+
 @Mixin(value = InventoryTransferHandler.class, remap = false)
 public abstract class InventoryTransferHandlerMixin {
     @Inject(
@@ -26,25 +31,13 @@ public abstract class InventoryTransferHandlerMixin {
             cancellable = true
     )
     private static void accepts(AbstractContainerMenu container, Player player, CallbackInfoReturnable<Boolean> cir) {
-        if (!(container instanceof CraftingMenu) && (!player.level().isClientSide() || !(container instanceof CreativeModeInventoryScreen.ItemPickerMenu))) {
+        if(container instanceof CreativeModeInventoryScreen.ItemPickerMenu || container instanceof InventoryMenu) {
+            cir.setReturnValue(false);
+            return;
+        }
+        if (!(container instanceof CraftingMenu)) {
             if(isApocalypseContainer(container.getType()))
                 cir.setReturnValue(true);
         }
-        if(container instanceof CreativeModeInventoryScreen.ItemPickerMenu)
-            cir.setReturnValue(false);
-    }
-
-    @Unique
-    private static HashSet<MenuType<?>> APOCALYPSE_NOW_TYPES = null;
-
-    @Unique
-    private static boolean isApocalypseContainer(MenuType<?> type) {
-        if(APOCALYPSE_NOW_TYPES == null) {
-            //Cache types to prevent creating streams, minor performance improvement, can be removed and directly streamed if ever problematic
-            APOCALYPSE_NOW_TYPES = new HashSet<>(ApocalypsenowModMenus.REGISTRY.getEntries().stream().map(RegistryObject::get).toList());
-            System.out.println("cache = " + APOCALYPSE_NOW_TYPES);
-        }
-
-        return APOCALYPSE_NOW_TYPES.contains(type);
     }
 }

@@ -1,6 +1,4 @@
-package mod.cdv.compat.quark;
-
-import mod.cdv.compat.CompatMixinPlugin;
+package mod.cdv.compat;
 
 public class QuarkMixinPlugin extends CompatMixinPlugin {
     @Override

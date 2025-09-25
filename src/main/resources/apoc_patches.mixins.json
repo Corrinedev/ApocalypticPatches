@@ -6,7 +6,8 @@
   "mixins": [
     "ArmorOptimizerMixin",
     "ItemMixin",
-    "SwordItemMixin"
+    "SwordItemMixin",
+    "lootr.RandomizableContainerLootrMixin"
   ],
   "client": [
   ],

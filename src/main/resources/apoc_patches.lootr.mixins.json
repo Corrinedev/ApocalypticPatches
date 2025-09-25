@@ -1,16 +1,14 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "mod.cdv.mixin.quark",
-  "plugin": "mod.cdv.compat.QuarkMixinPlugin",
+  "package": "mod.cdv.mixin.lootr",
+  "plugin": "mod.cdv.compat.LootrMixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "apocalypsenow.refmap.json",
   "mixins": [
-    "InventoryTransferHandlerMixin",
-    "client.ButtonRemoverMixin"
+    "BlockMixin"
   ],
   "client": [
-    "client.IButtonProviderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
