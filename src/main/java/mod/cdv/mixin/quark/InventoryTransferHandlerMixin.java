@@ -31,7 +31,7 @@ public abstract class InventoryTransferHandlerMixin {
             cancellable = true
     )
     private static void accepts(AbstractContainerMenu container, Player player, CallbackInfoReturnable<Boolean> cir) {
-        if(container instanceof CreativeModeInventoryScreen.ItemPickerMenu || container instanceof InventoryMenu) {
+        if(container instanceof InventoryMenu) {
             cir.setReturnValue(false);
             return;
         }

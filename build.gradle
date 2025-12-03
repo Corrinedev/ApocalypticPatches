@@ -76,9 +76,10 @@ dependencies {
     implementation fg.deobf("curse.maven:apocalypse-now-448410:6364603")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lootr-361276:6961345")
+    implementation fg.deobf("curse.maven:locks-unofficial-1128357:6115787")
 
-    compileOnly fg.deobf("curse.maven:quark-243121:6312787") //Optional in runtime, compileOnly() is required
-    compileOnly fg.deobf("curse.maven:zeta-968868:6312779") //Optional in runtime, required for Quark, compileOnly() maybe required
+    implementation fg.deobf("curse.maven:quark-243121:6312787") //Optional in runtime, compileOnly() is required
+    implementation fg.deobf("curse.maven:zeta-968868:6312779") //Optional in runtime, required for Quark, compileOnly() maybe required
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))

@@ -16,7 +16,7 @@ public final class CacheKeyHolder {
 
     public static HashSet<MenuType<?>> APOCALYPSE_NOW_TYPES = null;
 
-    public static boolean isApocalypseContainer(MenuType<?> type) {
+    public static boolean  isApocalypseContainer(MenuType<?> type) {
         if(APOCALYPSE_NOW_TYPES == null) {
             //Cache types to prevent creating streams, minor performance improvement, can be removed and directly streamed if ever problematic
             APOCALYPSE_NOW_TYPES = new HashSet<>(ApocalypsenowModMenus.REGISTRY.getEntries().stream().map(RegistryObject::get).toList());
@@ -32,7 +32,6 @@ public final class CacheKeyHolder {
             //Cache types to prevent creating streams, minor performance improvement, can be removed and directly streamed if ever problematic
             APOCALYPSE_NOW_TYPES = new HashSet<>(ApocalypsenowModMenus.REGISTRY.getEntries().stream().map(RegistryObject::get).toList());
         }
-        System.out.println(menu);
         return APOCALYPSE_NOW_TYPES.contains(menu.getType());
     }
 }

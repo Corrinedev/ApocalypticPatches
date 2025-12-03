@@ -31,7 +31,7 @@ public abstract class ButtonRemoverMixin {
             ci.cancel();
             return;
         }
-        if(screen instanceof CreativeModeInventoryScreen || screen instanceof InventoryScreen) {
+        if(screen instanceof CreativeModeInventoryScreen || screen instanceof InventoryScreen || mc.player.containerMenu instanceof CreativeModeInventoryScreen.ItemPickerMenu) {
             ci.cancel();
         }
     }
