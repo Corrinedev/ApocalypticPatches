@@ -5,12 +5,9 @@
   "plugin": "mod.cdv.compat.QuarkMixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "apocalypsenow.refmap.json",
-  "mixins": [
-    "InventoryTransferHandlerMixin",
-    "client.ButtonRemoverMixin"
-  ],
+  "mixins": [],
   "client": [
-    "client.IButtonProviderMixin"
+    "client.InventoryButtonHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
