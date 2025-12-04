@@ -26,6 +26,7 @@ public abstract class ButtonRemoverMixin {
     private static void deinitGui(ZScreen.Init.Post event, CallbackInfo ci) {
         var mc = Minecraft.getInstance();
         var screen = event.getScreen();
+        if(mc.player == null) return;
         if(screen instanceof InventoryScreen inv && !mc.player.isCreative()) {
             applyProviders(event, InventoryButtonHandler.ButtonTargetType.PLAYER_INVENTORY, inv, (s) -> s.container == mc.player.getInventory() && s.getSlotIndex() == 17);
             ci.cancel();
