@@ -1,13 +1,11 @@
 package mod.cdv;
 
 import net.mcreator.apocalypsenow.ApocalypsenowMod;
-import net.mcreator.apocalypsenow.block.IronsafeBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
@@ -21,7 +19,6 @@ import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -39,7 +36,6 @@ import noobanidus.mods.lootr.data.DataStorage;
 import noobanidus.mods.lootr.data.SpecialChestInventory;
 import noobanidus.mods.lootr.init.ModAdvancements;
 import noobanidus.mods.lootr.init.ModStats;
-import noobanidus.mods.lootr.util.ChestUtil;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Objects;
@@ -51,13 +47,12 @@ import static noobanidus.mods.lootr.util.ChestUtil.*;
 
 @Mod(Constants.MODID)
 public final class Boot {
-
-    public Boot() {
-        final var iModBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public Boot(FMLJavaModLoadingContext context) {
+        final var iModBus = context.getModEventBus();
         ATTRIBUTES.register(iModBus);
         iModBus.register(this);
         MinecraftForge.EVENT_BUS.addListener(Boot::onRightClick);
-        FMLJavaModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, config.getRight(), "apoc_patches.toml");
+        context.registerConfig(ModConfig.Type.COMMON, config.getRight(), "apoc_patches.toml");
     }
 
     @SubscribeEvent
@@ -82,8 +77,7 @@ public final class Boot {
     public static void handleLootChest(Block block, Level level, BlockPos pos, Player player) {
         if (!level.isClientSide() && !player.isSpectator()) {
             BlockEntity te = level.getBlockEntity(pos);
-            if (te instanceof ILootBlockEntity) {
-                ILootBlockEntity tile = (ILootBlockEntity)te;
+            if (te instanceof ILootBlockEntity tile) {
                 UUID tileId = tile.getTileId();
                 if (tileId == null) {
                     player.displayClientMessage(Component.translatable("lootr.message.invalid_block").setStyle(getInvalidStyle()), true);
@@ -157,7 +151,7 @@ public final class Boot {
 
         } else {
             if (player.isSpectator()) {
-                player.openMenu((MenuProvider)null);
+                player.openMenu(null);
             }
 
         }
@@ -187,12 +181,12 @@ public final class Boot {
     }
 
     private static void startDecay(Player player, UUID tileId, int decayValue) {
-        DataStorage.setDecaying(tileId, (Integer)ConfigManager.DECAY_VALUE.get());
+        DataStorage.setDecaying(tileId, ConfigManager.DECAY_VALUE.get());
         player.displayClientMessage(Component.translatable("lootr.message.decay_start", new Object[]{(Integer)ConfigManager.DECAY_VALUE.get() / 20}).setStyle(getDecayStyle()), true);
     }
 
     private static void startRefresh(Player player, UUID tileId, int refreshValue) {
-        DataStorage.setRefreshing(tileId, (Integer)ConfigManager.REFRESH_VALUE.get());
+        DataStorage.setRefreshing(tileId, ConfigManager.REFRESH_VALUE.get());
         player.displayClientMessage(Component.translatable("lootr.message.refresh_start", new Object[]{(Integer)ConfigManager.REFRESH_VALUE.get() / 20}).setStyle(getRefreshStyle()), true);
     }
 
