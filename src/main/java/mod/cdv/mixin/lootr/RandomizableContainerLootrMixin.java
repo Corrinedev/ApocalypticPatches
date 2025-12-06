@@ -51,8 +51,7 @@ public abstract class RandomizableContainerLootrMixin extends BaseContainerBlock
     protected ResourceLocation savedLootTable = null;
     protected long seed = -1L;
     protected UUID tileId = null;
-    @Shadow
-    protected ResourceLocation lootTable;
+    @Shadow protected ResourceLocation lootTable;
     private boolean savingToItem = false;
     boolean opened;
     final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {

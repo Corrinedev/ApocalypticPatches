@@ -51,7 +51,7 @@ public final class Boot {
         final var iModBus = context.getModEventBus();
         ATTRIBUTES.register(iModBus);
         iModBus.register(this);
-        MinecraftForge.EVENT_BUS.addListener(Boot::onRightClick);
+        //MinecraftForge.EVENT_BUS.addListener(Boot::onRightClick);
         context.registerConfig(ModConfig.Type.COMMON, config.getRight(), "apoc_patches.toml");
     }
 

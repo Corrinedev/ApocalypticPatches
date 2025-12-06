@@ -58,7 +58,7 @@ minecraft {
 }
 
 mixin {
-    add sourceSets.main, "apocalypsenow.refmap.json" // Likely not needed, but best to keep as a good measure
+    add sourceSets.main, "apocalypsenow.refmap.json"
 
     config "${mod_id}.mixins.json"
     config "${mod_id}.quark.mixins.json"
