@@ -5,14 +5,12 @@ import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.gui.screens.Screen;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.violetmoon.quark.api.IQuarkButtonAllowed;
 import org.violetmoon.quark.base.client.handler.InventoryButtonHandler;
 
 @Mixin(value = InventoryButtonHandler.class, remap = false)
-@Debug(export = true)
 public abstract class InventoryButtonHandlerMixin {
     @Definition(id = "IQuarkButtonAllowed", type = IQuarkButtonAllowed.class)
     @Expression("? instanceof IQuarkButtonAllowed")
