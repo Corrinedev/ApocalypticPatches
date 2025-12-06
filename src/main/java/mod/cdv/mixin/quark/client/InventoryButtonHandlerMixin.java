@@ -12,9 +12,8 @@ import org.violetmoon.quark.base.client.handler.InventoryButtonHandler;
 
 @Mixin(value = InventoryButtonHandler.class, remap = false)
 public abstract class InventoryButtonHandlerMixin {
-    @Definition(id = "screen", local = @Local(index = 2))
     @Definition(id = "IQuarkButtonAllowed", type = IQuarkButtonAllowed.class)
-    @Expression("screen instanceof IQuarkButtonAllowed")
+    @Expression("? instanceof IQuarkButtonAllowed")
     @ModifyExpressionValue(
             method = "initGui",
             at = @At("MIXINEXTRAS:EXPRESSION")
