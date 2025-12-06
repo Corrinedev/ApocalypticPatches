@@ -5,7 +5,10 @@
   "plugin": "mod.cdv.compat.QuarkMixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "apocalypsenow.refmap.json",
-  "mixins": [],
+  "mixins": [
+    "client.ChestSearchingModuleMixin",
+    "client.InventoryTransferHandlerMixin"
+  ],
   "client": [
     "client.InventoryButtonHandlerMixin"
   ],
